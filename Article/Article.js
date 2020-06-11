@@ -88,6 +88,111 @@ const data = [
   }
 ];
 
+// let articles = document.querySelector(".articles");
+// class ArticleMaker {
+//   constructor(art) {
+//     this.art = art;
+//     this.house = document.createElement("div");
+//     this.house.classList.add("article");
+//     articles.appendChild(this.house);
+//     this.title = document.createElement("h2");
+//     this.title.textContent = this.art.title;
+//     this.house.appendChild(this.title);
+//     this.date = document.createElement("p");
+//     this.date.classList.add("date");
+//     this.date.textContent = this.art.date;
+//     this.house.appendChild(this.date);
+//     this.p1 = document.createElement("p");
+//     this.p1.textContent = this.art.firstParagraph;
+//     this.house.appendChild(this.p1);
+//     this.p2 = document.createElement("p");
+//     this.p2.textContent = this.art.secondParagraph;
+//     this.house.appendChild(this.p2);
+//     this.p3 = document.createElement("p");
+//     this.p3.textContent = this.art.thirdParagraph;
+//     this.house.appendChild(this.p3);
+//     this.expand = document.createElement("span");
+//     this.expand.textContent = "Open / Close";
+//     this.expand.classList.add("expandButton");
+//     this.house.appendChild(this.expand);
+//     this.expand.addEventListener("click", this.articleOpen.bind(this));
+//   }
+//   articleOpen() {
+//     this.house.classList.toggle("article-open");
+//   }
+// }
+
+// data.map(cv => {
+//   return new ArticleMaker(cv);
+// });
+
+
+
+
+
+
+
+function articleMaker (title, date, firstParagraph, secondParagraph, thirdParagraph){
+
+const article = document.createElement('div');
+article.classList.add('article');
+const titleHeader = document.createElement('h2');
+titleHeader.textContent = title;
+const dateForPr = document.createElement('p');
+dateForPr.classList.add('date');
+dateForPr.textContent = date;
+
+
+const firstParagraph1 = document.createElement('p')
+firstParagraph1.classList.add('firstParagraph');
+firstParagraph1.textContent = firstParagraph;
+const secondParagraph2 = document.createElement('p');
+secondParagraph2.classList.add('secondParagraph');
+secondParagraph2.textContent = secondParagraph;
+const thirdParagraph3 = document.createElement('p');
+thirdParagraph3.classList.add('thirdParagraph');
+thirdParagraph3.textContent = thirdParagraph;
+const expandButton = document.createElement('span');
+expandButton.classList.add('expandButton');
+const open = document.createElement('div');
+expandButton.textContent = 'Open / Close';
+// expandButton.textContent = 'Close';
+
+//appending
+article.appendChild(titleHeader);
+article.appendChild(dateForPr);
+article.appendChild(firstParagraph1);
+article.appendChild(secondParagraph2);
+article.appendChild(thirdParagraph3);
+article.appendChild(open);
+article.appendChild(expandButton);
+//events
+  expandButton.addEventListener('click', (event) => {
+  console.log(event.target);
+  
+
+
+  const articleOpen = document.querySelector('.article-open')
+  article.classList.toggle('article-open');
+});
+
+return article;
+
+};
+
+//forEach
+const articles = document.querySelector('.articles');
+data.forEach((obj) => {
+  articles.appendChild(articleMaker(obj.title, obj.date, obj.firstParagraph, obj.secondParagraph, obj.thirdParagraph));
+// const articleMade = articleMaker(obj.title, obj.date, obj.firstParagraph, obj.secondParagraph, obj.thirdParagraph);
+// article.appendChild(articleMade);
+});
+
+console.log(articles);
+
+
+
+
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
 
   <div class="article">
