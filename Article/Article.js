@@ -88,7 +88,8 @@ const data = [
   }
 ];
 
-/* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
+/* Step 1: Write a component called 'articleMaker' to create an article. 
+You want your component to return markup like the template below: 
 
   <div class="article">
     <h2>{title of the article}</h2>
@@ -111,3 +112,63 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  article.classList.add('article');
+  const titleHeader = document.createElement('h2');
+  titleHeader.textContent = title;
+  const dateForPr = document.createElement('P');
+  dateForPr.classList.add('date');
+  dateForPr.textContent = date;
+
+  const firstParagraph1 = document.createElement('p');
+  firstParagraph1.classList.add('firstParagraph');
+  firstParagraph1.textContent = firstParagraph;
+
+  const secondParagraph2 = document.createElement('p');
+  secondParagraph2.classList.add('secondParagraph');
+  secondParagraph2.textContent = secondParagraph;
+
+  const thirdParagraph3 = document.createElement('p');
+  thirdParagraph3.classList.add('thirdParagraph');
+  thirdParagraph3.textContent = thirdParagraph;
+
+  const expandButton = document.createElement('span');
+  expandButton.classList.add('expandButton');
+  
+
+  const open = document.createElement('div');
+  expandButton.textContent = 'Open/Close';
+   
+
+  
+
+  //appending
+  article.appendChild(titleHeader);
+  article.appendChild(dateForPr);
+  article.appendChild(firstParagraph1);
+  article.appendChild(secondParagraph2);
+  article.appendChild(thirdParagraph3);
+  article.appendChild(open);
+  article.appendChild(expandButton);
+  
+
+  //events
+
+  expandButton.addEventListener('click', (event) => {
+    console.log(event.target);
+
+    const articeOpen = document.querySelector('.article-open');
+    article.classList.toggle('article-open');
+  });
+  
+  return article;
+};
+
+const articles = document.querySelector('.articles');
+data.forEach((obj) => {
+  articles.appendChild(articleMaker(obj.title, obj.date, obj.firstParagraph, obj.secondParagraph, obj.thirdParagraph));
+
+});
+console.log(articles);
+
